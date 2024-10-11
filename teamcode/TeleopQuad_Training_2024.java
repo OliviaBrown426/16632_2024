@@ -16,7 +16,10 @@ public class TeleopQuad_Training_2024 extends OpMode {
 
     // Create instance of MaristBaseRobot2024
     MaristBaseRobot2024_Quad robot   = new MaristBaseRobot2024_Quad();
-    private Object rightFrontPower;
+
+    double wristposition = 0.83;
+    double leftHandPos = 0.22;
+    double rightHandPos = 0.79;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -28,8 +31,11 @@ public class TeleopQuad_Training_2024 extends OpMode {
          */
         robot.init(hardwareMap);
 
+        // Set Servo
+        robot.leftHand.setPosition(0.48);
+        robot.rightHand.setPosition(0.52);
+
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Robot Ready");    //
 
         // Set to Run without Encoder for Tele Operated
         robot.leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -46,6 +52,7 @@ public class TeleopQuad_Training_2024 extends OpMode {
      */
     @Override
     public void init_loop() {
+
 
     }
 
@@ -79,13 +86,43 @@ public class TeleopQuad_Training_2024 extends OpMode {
         else {
             robot.rightArm.setPower(0);
         }
+        //close grasper
 
+        //close grasper grad
         if (gamepad1.right_bumper) {
-            robot.leftHand.setPosition(0.25);
+            leftHandPos+= 0.005;
+            rightHandPos-= 0.005;
         }
+        //open grasper grad
         if (gamepad1.left_bumper) {
-            robot.leftHand.setPosition(0.75);
+            leftHandPos-= 0.005;
+            rightHandPos+= 0.005;
         }
+
+        leftHandPos = Range.clip(leftHandPos, 0.2, 0.48);
+        rightHandPos = Range.clip(rightHandPos, 0.52, 0.8);
+
+        telemetry.addData("Left Hand:", leftHandPos);
+        telemetry.addData("Right hand:", rightHandPos);
+
+        robot.leftHand.setPosition(leftHandPos);
+        robot.rightHand.setPosition(rightHandPos);
+
+        // wrist code
+        if (gamepad1.dpad_up){
+            wristposition+= 0.001;
+        }
+        if (gamepad1.dpad_down){
+            wristposition-= 0.001;
+        }
+
+        wristposition = Range.clip(wristposition, 0, 1.0);
+
+        robot.wristHand.setPosition(wristposition);
+
+        telemetry.addData("Say", "Robot Ready");    //
+        telemetry.addData("Wrist position:", wristposition);
+
     }
 
     /*

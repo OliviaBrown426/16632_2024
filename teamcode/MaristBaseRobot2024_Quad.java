@@ -64,6 +64,7 @@ public class MaristBaseRobot2024_Quad {
     public DcMotor leftArm     = null;
     public Servo rightHand    = null;
     public Servo leftHand   = null;
+    public Servo wristHand = null;
 
     public   IMU imu;
     public double offset = 0;//in degrees
@@ -110,6 +111,8 @@ public class MaristBaseRobot2024_Quad {
         rightRear    = hwMap.dcMotor.get("rightrear");
         leftArm      = hwMap.dcMotor.get("leftarm");
         rightArm     = hwMap.dcMotor.get("rightarm");
+
+
         leftFront.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightFront.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         leftRear.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
@@ -133,6 +136,7 @@ public class MaristBaseRobot2024_Quad {
         // Define and initialize ALL installed servos.
         leftHand = hwMap.servo.get("lefthand");
         rightHand = hwMap.servo.get("righthand");
+        wristHand = hwMap.servo.get("wrist");
         leftHand.setPosition(MID_SERVO);
         rightHand.setPosition(MID_SERVO);
 
