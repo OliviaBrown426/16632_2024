@@ -1,6 +1,6 @@
 ## TeamCode Module
 
-Welcome! Test 1 test 2 test 3 test 4
+Welcome! Test 1 test 2 test 3 test 4 if you have split lunch go to the lab for a min
 
 This module, TeamCode, is the place where you will write/paste the code for your team's
 robot controller App. This module is currently empty (a clean slate) but the
