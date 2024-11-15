@@ -1,8 +1,6 @@
 ## TeamCode Module
 
-Welcome! Test 1 test 2 test 3 test 4 give me admingive me admingive me admingive me admingive me admin
-give me admingive me admingive me admingive me admingive me admin
-give me admingive me admingive me admingive me admin
+Welcome! hi
 
 This module, TeamCode, is the place where you will write/paste the code for your team's
 robot controller App. This module is currently empty (a clean slate) but the
